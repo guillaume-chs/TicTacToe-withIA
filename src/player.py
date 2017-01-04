@@ -8,3 +8,7 @@ class Player:
 
     def draw(self):
         return self.icon
+
+
+    def __str__(self):
+        return self.name

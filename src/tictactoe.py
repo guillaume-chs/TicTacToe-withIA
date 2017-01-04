@@ -14,15 +14,15 @@ class TicTacToe:
 
 
     def play(self):
-        self.draw()
-
         self.current_player = 0
         self.playing = True
 
         while self.turn < 10:
+            self.draw()
             self.turn += 1
+
             self.play_turn()
-            
+
             # Test isGagnant(self.current_player)
             self.current_player = 1 if self.current_player == 0 else 0
 
@@ -52,13 +52,13 @@ class TicTacToe:
     def play_turn(self):
         while True:
             try:
-                user_input = input('Joueur ' + self.players[self.current_player])
-                line, col = map(lambda x: int(x)-1, user_input.split(' '))
+                user_input = input('{}, à vous de jouer (ligne - colonne) : '.format(self.players[self.current_player]))
+                line, col = map(lambda x: int(x)-1, user_input.split(' - '))
 
                 if not self.can_play(line, col):
                     print('La case ({}, {}) n\'est pas libre ! Veuillez recommencer.'.format(line+1, col+1))
                 else:
-                    self.grid[line, col] = self.current_player
+                    self.grid[line][col] = self.current_player
                     return
             except ValueError:
                 print('Saisie non valide, veuillez recommencer')
